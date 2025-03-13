@@ -1,93 +1,163 @@
-# SOT Job Board
+# MKA USA Job Board
 
+A dedicated job board platform for members of Majlis Khuddamul Ahmadiyya USA, managed by the Sanat-o-Tijarat Department. This platform facilitates job connections between Khuddam seeking employment and those who can help their brothers secure positions.
 
+## 🚀 Features
 
-## Getting started
+- **Job Listings**: Browse and search through job opportunities posted by fellow Khuddam
+- **Advanced Filtering**: Filter jobs by category, location, and job type
+- **Application System**: Simple application process for job seekers
+- **Admin Dashboard**: Secure admin interface for managing job postings
+- **Responsive Design**: Fully responsive interface that works on all devices
+- **Real-time Updates**: Instant updates for job listings and applications
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 🛠️ Technology Stack
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- **Frontend**: React.js with Vite
+- **UI Components**: ShadcnUI + Tailwind CSS
+- **State Management**: React Context
+- **Routing**: React Router
+- **Backend Integration**: Express.js
+- **Database**: Google Sheets API
+- **Authentication**: JWT with HTTP-only cookies
 
-## Add your files
+## 📋 Prerequisites
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Before you begin, ensure you have the following installed:
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+## 🔧 Installation
+
+1. Clone the repository:
+```bash
+git clone [repository-url]
+cd mka-job-board
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env` file in the root directory with the following variables:
+```env
+# Server Configuration
+PORT=3001
+CLIENT_URL=http://localhost:5173
+
+# Google Sheets API
+GOOGLE_SHEETS_PRIVATE_KEY="your-private-key"
+GOOGLE_SHEETS_CLIENT_EMAIL="your-client-email"
+GOOGLE_SHEETS_SPREADSHEET_ID="your-spreadsheet-id"
+GOOGLE_SHEETS_SHEET_NAME="Jobs"
+
+# JWT Secret for Admin Authentication
+JWT_SECRET="your-jwt-secret"
+ADMIN_USERNAME="admin"
+ADMIN_PASSWORD_HASH="your-password-hash"
+
+# Cache settings
+CACHE_TTL=300
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+## 🏗️ Project Structure
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/mkausa/sot-job-board.git
-git branch -M main
-git push -uf origin main
+mka-job-board/
+├── src/
+│   ├── components/         # Reusable UI components
+│   ├── contexts/          # React Context providers
+│   ├── lib/              # Utility functions and helpers
+│   ├── pages/            # Page components
+│   ├── services/         # API service functions
+│   ├── server/           # Express.js server code
+│   ├── App.jsx          # Main application component
+│   └── main.jsx         # Application entry point
+├── public/              # Static assets
+└── package.json        # Project dependencies and scripts
 ```
 
-## Integrate with your tools
+## 🔐 Authentication
 
-- [ ] [Set up project integrations](https://gitlab.com/mkausa/sot-job-board/-/settings/integrations)
+The admin interface is protected and requires authentication. Default credentials:
+- Username: admin
+- Password: admin123
 
-## Collaborate with your team
+⚠️ Make sure to change these credentials in production.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+## 🚀 Deployment
 
-## Test and Deploy
+1. Build the production bundle:
+```bash
+npm run build
+```
 
-Use the built-in continuous integration in GitLab.
+2. Start the production server:
+```bash
+npm run server
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## 💻 Development
 
-***
+- **Development Server**: `npm run dev`
+- **Build**: `npm run build`
+- **Preview Production Build**: `npm run preview`
+- **Start Server**: `npm run server`
 
-# Editing this README
+## 🔄 API Endpoints
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### Public Endpoints
+- `GET /api/jobs` - Get all jobs with optional filters
+- `GET /api/jobs/:id` - Get specific job details
+- `GET /api/categories` - Get job categories
+- `POST /api/jobs/:id/apply` - Submit job application
 
-## Suggestions for a good README
+### Admin Endpoints (Protected)
+- `POST /api/admin/login` - Admin authentication
+- `POST /api/admin/jobs` - Create new job listing
+- `PUT /api/admin/jobs/:id` - Update existing job
+- `DELETE /api/admin/jobs/:id` - Delete job listing
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## 🎨 Customization
 
-## Name
-Choose a self-explaining name for your project.
+### Theme Colors
+The primary brand color (`#78c197`) and other design tokens can be customized in:
+- `tailwind.config.js` - For Tailwind CSS theme
+- `src/index.css` - For CSS variables
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Components
+All UI components are built using ShadcnUI and can be customized in the `components/ui` directory.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## 🤝 Contributing
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## 📝 License
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+This project is maintained by Majlis Khuddamul Ahmadiyya USA and is intended for internal use only.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## 📞 Support
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+For technical support or questions, please contact:
+- Sanat-o-Tijarat Department
+- Email: jobs@mkausa.org
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+## ✨ Acknowledgments
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+- MKA USA Leadership
+- Sanat-o-Tijarat Department
+- All contributing Khuddam
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+---
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Built with ❤️ for Majlis Khuddamul Ahmadiyya USA
