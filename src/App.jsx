@@ -7,6 +7,8 @@ import AdminLoginPage from './pages/AdminLoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import NotFoundPage from './pages/NotFoundPage';
+import SupabaseTest from './components/SupabaseTest';
+import FirstAdminBootstrap from './components/FirstAdminBootstrap';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="jobs" element={<JobListingPage />} />
         <Route path="jobs/:id" element={<JobDetailPage />} />
         <Route path="admin/login" element={<AdminLoginPage />} />
+        <Route path="supabase-test" element={<SupabaseTest />} />
+        <Route path="admin/bootstrap" element={<FirstAdminBootstrap />} />
         <Route 
           path="admin/dashboard" 
           element={

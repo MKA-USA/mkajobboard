@@ -1,0 +1,35 @@
+# Cursor Rules for SoT Job Board Project
+
+## Project Overview
+This is a job board application for the School of Technology.
+
+## File Structure
+- src/: Source code
+- docs/: Documentation
+- public/: Static assets
+- images/: Image assets
+
+## Coding Standards
+- Use TypeScript for type safety
+- Follow React best practices
+- Use Tailwind CSS for styling
+- Implement responsive design
+- Follow accessibility guidelines
+
+## Documentation Requirements
+- Keep docs up to date
+- Document major architectural decisions
+- Include setup instructions
+- Document API endpoints
+
+## Testing Guidelines
+- Write unit tests for components
+- Test responsive behavior
+- Test accessibility features
+- Validate form inputs
+
+## Performance Guidelines
+- Optimize image loading
+- Implement lazy loading
+- Monitor bundle size
+- Cache appropriately 
